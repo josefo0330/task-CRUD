@@ -1,0 +1,13 @@
+
+.contendor{
+    display: flex;                /* Activa Flexbox */
+    justify-content: center;      /* Centrado horizontal */
+    align-items: center;          /* Centrado vertical */         
+    margin: 0; 
+    background-color: white;
+    width: 50vw;
+    height: 50vh;
+}
+label, input, button{
+    margin-top: 5%;
+}
