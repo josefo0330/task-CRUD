@@ -32,7 +32,7 @@ services:
       context: ./frontend/react-app
       dockerfile: Dockerfile
     ports:
-      - "3000:80"
+      - "3030:80"
     depends_on:
       - backend
 
