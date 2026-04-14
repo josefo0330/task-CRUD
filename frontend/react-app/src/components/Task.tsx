@@ -73,7 +73,7 @@ function Task (){
                     </thead>
                     <tbody>
                         {
-                            task.map((data,i)=>(
+                            task.map((data)=>(
                             <tr key={data.id} >
                                 <td>{data.title}</td>
                                 <td>{data.descripcion}</td>
@@ -88,7 +88,7 @@ function Task (){
                                     </label>
                                 </td>
                                 <td>
-                                    <button onClick={(e) => handleDelete(data.id)}> Eliminar </button>
+                                    <button onClick={() => handleDelete(data.id)}> Eliminar </button>
                                 </td>
                             </tr>
                             
