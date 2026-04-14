@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Link } from "react-router-dom"
 import '../assets/task.css'
 import { AuthContext } from "../context/AuthContext"
-import NavbarComponents from "./Navbar/NavbarComponents"
+import NavbarComponents from "../components/Navbar/NavbarComponents"
 interface TaskType{
     id:number,
     title:string,
@@ -11,7 +11,6 @@ interface TaskType{
     estado:string
 }
 function Task (){
-     <NavbarComponents />
     const { user } = useContext(AuthContext)
     const [task,setTask] = useState<TaskType[]>([])
     useEffect(()=>{
@@ -58,8 +57,8 @@ function Task (){
     }
   }
     return(
-        
         <div className="task">
+                 <NavbarComponents />
             <div className="table">
                 <Link to ="/create" >Agregar +</Link>
                 <table>

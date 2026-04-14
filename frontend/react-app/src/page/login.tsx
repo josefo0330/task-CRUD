@@ -1,5 +1,5 @@
 import { useState, useContext } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { login } from "../services/authService"
 import { AuthContext } from "../context/AuthContext"
 import'../assets/login.css'
@@ -59,6 +59,9 @@ function LoginPage() {
       />
       <div className="button-container">
       <button type="submit" >Ingresar</button>
+      </div>
+      <div className="link-container">
+        <Link to="/register">¿No tienes cuenta? Regístrate aquí</Link>
       </div>
     </form>
   </div>  

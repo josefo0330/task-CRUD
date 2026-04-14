@@ -9,12 +9,14 @@ interface AuthContextType {
   token: string | null
   user: User | null
   setAuth: (token: string, user: User) => void
+  logout: () => void
 }
 
 export const AuthContext = createContext<AuthContextType>({
   token: null,
   user: null,
-  setAuth: () => {}
+  setAuth: () => {},
+  logout: () => {}
 })
 
 export const AuthProvider = ({ children }: any) => {
@@ -34,9 +36,15 @@ export const AuthProvider = ({ children }: any) => {
     setToken(token)
     setUser(user)
   }
+  const logout = () => {
+  localStorage.removeItem("token")
+  localStorage.removeItem("user")
 
+  setToken(null)
+  setUser(null)
+} 
   return (
-    <AuthContext.Provider value={{ token, user, setAuth }}>
+    <AuthContext.Provider value={{ token, user, setAuth, logout }}>
       {children}
     </AuthContext.Provider>
   )

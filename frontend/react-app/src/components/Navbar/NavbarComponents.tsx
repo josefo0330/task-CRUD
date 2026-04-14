@@ -2,9 +2,17 @@ import React from 'react'
 import {  useState } from "react"
 import logo from '../../assets/images/12178616.png'
 import '../../assets/navbar.css'
+import { AuthContext } from "../../context/AuthContext"
 import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink } from 'reactstrap';
+import { useNavigate } from 'react-router-dom'
 function NavbarComponents() {
-   const [estaAbiertoNavbar, setEstaAbiertoNavbar] = useState(false);
+  const [estaAbiertoNavbar, setEstaAbiertoNavbar] = useState(false);
+  const { logout } = React.useContext(AuthContext);
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    logout()
+    navigate("/")
+  }
   return (
     <div>
       <Navbar className='navbar-style' dark fixed='top' expand ='sm' >
@@ -19,7 +27,7 @@ function NavbarComponents() {
         <Collapse isOpen={estaAbiertoNavbar} navbar>
         <Nav className='ms-auto' navbar>
           <NavItem role='button'  >
-            <NavLink className='custom-nav-item'>Cerrar Sesion</NavLink>
+            <NavLink className='custom-nav-item' onClick={handleLogout}>Cerrar Sesion</NavLink>
           </NavItem>
 
         </Nav>

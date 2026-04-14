@@ -1,8 +1,8 @@
-const mysql = require ("mysql")
-const db=mysql.createPool({
-    host:"localhost",
-    user:"root",
-    password:"",
-    database:"tareas"
+const mysql = require("mysql")
+const db = mysql.createPool({
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "",
+  database: process.env.DB_DATABASE || "tareas"
 })
 module.exports = db
