@@ -11,8 +11,8 @@ app.get("/", (req, res) => {
   res.send("API funcionando 🚀")
 })
 //Mostrar las tareas en la tabla
-app.get("/:userId", (req, res)=>{
-const userId = req.params.userId
+app.get('/tasks/:userId', (req, res)=>{
+  const userId = req.params.userId
   const sql = "SELECT * FROM task WHERE userID = ?"
   db.query(sql, [userId], (err, data) => {
     if (err) return res.json(err)

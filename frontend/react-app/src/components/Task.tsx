@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState} from "react"
-import axios from 'axios'
+import api from '../services/api'
 import { Link } from "react-router-dom"
 import '../assets/task.css'
 import { AuthContext } from "../context/AuthContext"
@@ -15,14 +15,14 @@ function Task (){
     const [task,setTask] = useState<TaskType[]>([])
     useEffect(()=>{
         
-        axios.get(`http://localhost:8081/${user?.id}`)
+        api.get(`/tasks/${user?.id}`)
         .then(res => setTask(res.data))
         .catch(err => console.log(err))
         
     },[])
     const handleDelete = async (id: number) =>{
         try{
-            await axios.delete(`http://localhost:8081/task/${id}`)
+            await api.delete(`/task/${id}`)
             setTask(prev => prev.filter(t => t.id !== id))
         }
         catch(err){
@@ -39,7 +39,7 @@ function Task (){
 
     try {
 
-      await axios.post(`http://localhost:8081/status/${id}`, {
+      await api.post(`/status/${id}`, {
         estado: checked ? "realizado" : "pendiente"
       })
 
