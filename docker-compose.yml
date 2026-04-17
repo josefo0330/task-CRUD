@@ -27,14 +27,12 @@ services:
       DB_PASSWORD: rootpassword
       DB_DATABASE: tareas
 
-  nginx:
+  frontend:
     build:
       context: ./frontend/react-app
       dockerfile: Dockerfile
-      args:
-        VITE_API_URL: "/api"
     ports:
-      - "8080:80"
+      - "5173:5173"
     depends_on:
       - backend
 
