@@ -3,11 +3,10 @@ services:
   db:
     image: mysql:8.0
     container_name: tareas-db
-    restart: unless-stopped
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: qwert
       MYSQL_DATABASE: tareas
-      MYSQL_ROOT_HOST: "%"
     ports:
       - "3306:3306"
     volumes:
