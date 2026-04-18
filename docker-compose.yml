@@ -11,7 +11,18 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+  phpmysqladmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_app
+    restart: always
 
+    environment:
+      PMA_HOST: maria_db_app
+      PMA_PORT: 3306
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.softapp.ch`)"
+      - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
   backend:
     build:
       context: ./backend
