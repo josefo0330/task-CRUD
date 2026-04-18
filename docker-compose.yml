@@ -1,17 +1,5 @@
 
 services:
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    restart: always
-
-    environment:
-      PMA_HOST: phpmyadmin.softapp.ch
-      PMA_PORT: 3306
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.softapp.ch`)"
-      - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
   backend:
     build:
       context: ./backend
@@ -21,7 +9,7 @@ services:
     ports:
       - "8081:8081"
     environment:
-      DB_HOST: phpmyadmin.softapp.ch
+      DB_HOST: maria_db_app
       DB_USER: root
       DB_PASSWORD: qwert
       DB_DATABASE: tareas
