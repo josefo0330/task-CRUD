@@ -1,24 +1,28 @@
 
 services:
   backend:
-    build: ./backend
-    container_name: backend_app
-    restart: always
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
       - "8081:8081"
     environment:
-      DB_HOST: maria_db_app  # 👈 nombre del servicio
+      DB_HOST: maria_db_app
       DB_USER: root
       DB_PASSWORD: qwert
-      DB_NAME: tareas
+      DB_DATABASE: tareas
 
   frontend:
-    build: ./frontend
-    container_name: frontend_app
+    build:
+      context: ./frontend/react-app
+      dockerfile: Dockerfile
     ports:
       - "5173:5173"
     depends_on:
       - backend
 
 volumes:
-  db_data:
+  db_data: {}
+networks:
+  deployment_network:
+    external: true
