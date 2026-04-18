@@ -1,16 +1,5 @@
 
 services:
-  maria_db_app:
-    image: mariadb:10.11.10
-    container_name: mariadb_db_app
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: qwert
-      MYSQL_DATABASE: tareas
-    ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
