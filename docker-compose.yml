@@ -2,7 +2,7 @@
 services:
   maria_db_app:
     image: mariadb:10.11.10
-    container_name: tareas-db
+    container_name: mariadb_db_app
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: qwert
@@ -17,7 +17,7 @@ services:
     restart: always
 
     environment:
-      PMA_HOST: tareas-db
+      PMA_HOST: maria_db_app
       PMA_PORT: 3306
     labels:
       - "traefik.enable=true"
