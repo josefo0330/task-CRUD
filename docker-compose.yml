@@ -48,3 +48,6 @@ services:
 
 volumes:
   db_data: {}
+networks:
+  deployment_network:
+    external: true
