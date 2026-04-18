@@ -1,8 +1,8 @@
-const maraiadb = require("mariadb")
+const maraiadb = require("mysql")
 const db = maraiadb.createPool({
-  host:  "maria_db_app",
+  host:  "localhost",
   user:  "root",
-  password:  "qwert",
+  password:  "",
   database: "tareas"
 })
 module.exports = db
