@@ -28,7 +28,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     depends_on:
-      - maria_db_app
+      - phpmyadmin
     ports:
       - "8081:8081"
     environment:
