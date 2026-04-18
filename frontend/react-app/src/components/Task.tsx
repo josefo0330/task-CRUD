@@ -3,7 +3,6 @@ import api from '../services/api'
 import { Link } from "react-router-dom"
 import '../assets/task.css'
 import { AuthContext } from "../context/AuthContext"
-import NavbarComponents from "../components/Navbar/NavbarComponents"
 interface TaskType{
     id:number,
     title:string,
@@ -58,7 +57,6 @@ function Task (){
   }
     return(
         <div className="task">
-                 <NavbarComponents />
             <div className="table">
                 <Link to ="/create" >Agregar +</Link>
                 <table>
@@ -75,10 +73,10 @@ function Task (){
                         {
                             task.map((data)=>(
                             <tr key={data.id} >
-                                <td>{data.title}</td>
-                                <td>{data.descripcion}</td>
-                                <td>{data.estado}</td>
-                                <td>
+                                <td data-label="Titulo">{data.title}</td>
+                                <td data-label="Descripcion">{data.descripcion}</td>
+                                <td data-label="Estado">{data.estado}</td>
+                                <td data-label="Realizado">
                                     <label className="switch">
                                     <input type="checkbox"
                                         onChange={(e)=> handleCheckboxChange(data.id, e)}
@@ -87,7 +85,7 @@ function Task (){
                                     <span className="slider round"></span>
                                     </label>
                                 </td>
-                                <td>
+                                <td data-label="Accion">
                                     <button onClick={() => handleDelete(data.id)}> Eliminar </button>
                                 </td>
                             </tr>
