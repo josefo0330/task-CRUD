@@ -1,28 +1,31 @@
 services:
+
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
-    ports:
-      - "8081:8081"
+    expose:
+      - "8081"
+    networks:
+      - dokploy-network
     environment:
       DB_HOST: maria_db_app
       DB_USER: root
       DB_PASSWORD: qwert
       DB_DATABASE: tareas
-    networks:
-      - dokploy-network   # 👈 CAMBIO AQUÍ
 
   frontend:
     build:
       context: ./frontend/react-app
-      dockerfile: Dockerfile
-    ports:
-      - "5173:5173"
+    expose:
+      - "80"
+    networks:
+      - dokploy-network
     depends_on:
       - backend
-    networks:
-      - dokploy-network   # 👈 CAMBIO AQUÍ
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.app.rule=Host(`crud-task.softapp.ch`)
+      - traefik.http.services.app.loadbalancer.server.port=80
 
 networks:
   dokploy-network:
