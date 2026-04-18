@@ -16,7 +16,7 @@ exports.login = (req, res) => {
 
     const user = data[0]
 
-    // ⚠️ comparación simple (luego mejoramos con bcrypt)
+  
     if (user.password !== password) {
       return res.status(401).json({ message: "Contraseña incorrecta" })
     }
