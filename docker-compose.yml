@@ -9,12 +9,6 @@ services:
       - "8081"
     networks:
       - dokploy-network
-    environment:
-      DB_HOST: maria_db_app
-      DB_USER: root
-      DB_PASSWORD: qwert
-      DB_NAME: tareas
-
   frontend:
     build:
       context: ./frontend/react-app
