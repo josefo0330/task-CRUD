@@ -10,6 +10,8 @@ services:
       DB_USER: root
       DB_PASSWORD: qwert
       DB_DATABASE: tareas
+    networks:
+      - dokploy-network   # 👈 CAMBIO AQUÍ
 
   frontend:
     build:
@@ -19,3 +21,9 @@ services:
       - "5173:5173"
     depends_on:
       - backend
+    networks:
+      - dokploy-network   # 👈 CAMBIO AQUÍ
+
+networks:
+  dokploy-network:
+    external: true
