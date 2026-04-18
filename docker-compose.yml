@@ -6,7 +6,7 @@ services:
     restart: always
 
     environment:
-      PMA_HOST: maria_db_app
+      PMA_HOST: phpmyadmin.softapp.ch
       PMA_PORT: 3306
     labels:
       - "traefik.enable=true"
@@ -21,7 +21,7 @@ services:
     ports:
       - "8081:8081"
     environment:
-      DB_HOST: maria_db_app
+      DB_HOST: phpmyadmin.softapp.ch
       DB_USER: root
       DB_PASSWORD: qwert
       DB_DATABASE: tareas
