@@ -1,42 +1,26 @@
 
 services:
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    restart: always
-
-    environment:
-      PMA_HOST: maria_db_app
-      PMA_PORT: 3306
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.softapp.ch`)"
-      - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    depends_on:
-      - phpmyadmin
+    build: ./backend
+    container_name: backend_app
+    restart: always
     ports:
       - "8081:8081"
+    depends_on:
+      - db
     environment:
-      DB_HOST: maria_db_app
+      DB_HOST: maria_db_app  # 👈 nombre del servicio
       DB_USER: root
       DB_PASSWORD: qwert
-      DB_DATABASE: tareas
+      DB_NAME: tareas
 
   frontend:
-    build:
-      context: ./frontend/react-app
-      dockerfile: Dockerfile
+    build: ./frontend
+    container_name: frontend_app
     ports:
       - "5173:5173"
     depends_on:
       - backend
 
 volumes:
-  db_data: {}
-networks:
-  deployment_network:
-    external: true
+  db_data:
