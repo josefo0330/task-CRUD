@@ -7,10 +7,7 @@ services:
     ports:
       - "8081:8081"
     environment:
-      DB_HOST: maria_db_app
-      DB_USER: root
-      DB_PASSWORD: qwert
-      DB_DATABASE: tareas
+      - NODE_ENV=production
 
   frontend:
     build:
