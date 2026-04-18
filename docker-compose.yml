@@ -1,23 +1,12 @@
 
 services:
-  db:
-    image: mariadb:10.11.10
-    container_name: tareas-db
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: qwert
-      MYSQL_DATABASE: tareas
-    ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql
   phpmysqladmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
     restart: always
 
     environment:
-      PMA_HOST: tareas-db
+      PMA_HOST: mariadb_db_app
       PMA_PORT: 3306
     labels:
       - "traefik.enable=true"
