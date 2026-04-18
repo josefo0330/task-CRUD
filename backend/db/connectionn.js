@@ -1,5 +1,5 @@
-const mysql = require("mysql")
-const db = mysql.createPool({
+const maraiadb = require("mariadb")
+const db = maraiadb.createPool({
   host: process.env.DB_HOST || "tareas-db",
   user: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "qwert",
