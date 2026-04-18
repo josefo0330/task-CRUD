@@ -1,12 +1,23 @@
 
 services:
+  maria_db_app:
+    image: mariadb:10.11.10
+    container_name: tareas-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: qwert
+      MYSQL_DATABASE: tareas
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
   phpmysqladmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
     restart: always
 
     environment:
-      PMA_HOST: mariadb_db_app
+      PMA_HOST: tareas-db
       PMA_PORT: 3306
     labels:
       - "traefik.enable=true"
@@ -17,13 +28,13 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     depends_on:
-      - phpmysqladmin
+      - maria_db_app
     ports:
       - "8081:8081"
     environment:
-      DB_HOST: mariadb_db_app
+      DB_HOST: db
       DB_USER: root
-      DB_PASSWORD: qwert
+      DB_PASSWORD: rootpassword
       DB_DATABASE: tareas
 
   frontend:
