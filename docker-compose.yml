@@ -1,4 +1,3 @@
-
 services:
   backend:
     build:
@@ -11,6 +10,8 @@ services:
       DB_USER: root
       DB_PASSWORD: qwert
       DB_DATABASE: tareas
+    networks:
+      - deployment_network 
 
   frontend:
     build:
@@ -20,9 +21,9 @@ services:
       - "5173:5173"
     depends_on:
       - backend
+    networks:
+      - deployment_network   
 
-volumes:
-  db_data: {}
 networks:
   deployment_network:
     external: true
