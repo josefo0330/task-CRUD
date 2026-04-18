@@ -5,3 +5,4 @@ const api = axios.create({
     ? "http://localhost:8081"
     : "/api"
 })
+export default api
