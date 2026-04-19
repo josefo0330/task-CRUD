@@ -31,11 +31,11 @@ app.post('/create',(req,res) =>{
     const { title, descripcion, userID } = req.body
     const sql = `
     INSERT INTO task (title, descripcion, estado, userID)
-    VALUES (?, ?, 'pendiente', ?)
+    VALUES (?, ?, ?, ?)
   `
   
     console.log(userID)
-    db.query(sql,[title, descripcion, userID],(err,data)=>{
+    db.query(sql,[title, descripcion, "pendiente", userID],(err,data)=>{
         if (err) return res.json("error")
         return res.json(data)
     })
