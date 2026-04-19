@@ -20,12 +20,6 @@ services:
     networks:
       - dokploy-network
     environment:
-      DB_HOST: maria_db_app
-      DB_USER: root
-      DB_PASSWORD: qwert
-      DB_NAME: tareas
-    depends_on:
-      - maria_db_app
 
   frontend:
     build:
