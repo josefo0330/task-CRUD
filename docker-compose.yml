@@ -1,17 +1,6 @@
 version: "3.9"
 
 services:
-
-  maria_db_app:
-    image: mariadb:10.6
-    environment:
-      MYSQL_ROOT_PASSWORD: qwert
-      MYSQL_DATABASE: tareas
-    volumes:
-      - mariadb_data:/var/lib/mysql
-    networks:
-      - dokploy-network
-
   backend:
     build:
       context: ./backend
