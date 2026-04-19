@@ -11,9 +11,6 @@ services:
       DB_USER: root
       DB_PASSWORD: qwert
       DB_NAME: tareas
-    networks:
-      - app-network
-
   frontend:
     build:
       context: ./frontend/react-app
