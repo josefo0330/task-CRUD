@@ -29,6 +29,12 @@ app.get('/tasks/:userId', (req, res)=>{
 // insertar los datos nuevos
 app.post('/create',(req,res) =>{
     const { title, descripcion, userID } = req.body
+
+    if (!title || !descripcion || !userID) {
+      console.error('Create task validation failed:', { title, descripcion, userID })
+      return res.status(400).json({ message: 'title, descripcion y userID son obligatorios' })
+    }
+
     const sql = `
     INSERT INTO task (title, descripcion, estado, userID)
     VALUES (?, ?, ?, ?)

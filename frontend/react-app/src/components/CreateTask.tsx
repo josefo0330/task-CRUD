@@ -30,15 +30,21 @@ const handleSubmit = async (e: React.FormEvent) => {
         <h1>Agregar Tarea</h1>
 
         <div className="formulario">
-            <label htmlFor="">Titulo</label>
-            <input type="text" 
-            onChange={e => setTitle(e.target.value)}
+            <label htmlFor="title">Titulo</label>
+            <input
+              id="title"
+              type="text"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
             />
         </div>
         <div className="formulario">
-            <label htmlFor="">Descripcion</label>
-            <input type="text"
-            onChange={e => setDescripcion(e.target.value)}
+            <label htmlFor="descripcion">Descripcion</label>
+            <input
+              id="descripcion"
+              type="text"
+              value={descripcion}
+              onChange={e => setDescripcion(e.target.value)}
             />
         </div>
         <button >Enviar</button>
