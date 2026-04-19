@@ -33,11 +33,14 @@ app.post('/create',(req,res) =>{
     INSERT INTO task (title, descripcion, estado, userID)
     VALUES (?, ?, ?, ?)
   `
-  
-    console.log(userID)
+
+    console.log('POST /create body:', { title, descripcion, userID })
     db.query(sql,[title, descripcion, "pendiente", userID],(err,data)=>{
-        if (err) return res.json("error")
-        return res.json(data)
+        if (err) {
+            console.error('Create task error:', err)
+            return res.status(500).json({ message: 'Error al crear tarea', error: err.message })
+        }
+        return res.status(201).json({ message: 'Tarea creada', insertId: data.insertId })
     })
 })
 //eliminar las tareas 
