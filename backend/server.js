@@ -6,8 +6,8 @@ const authRoutes = require("./routes/authRoutes")
 //rutas
 app.use(cors())
 app.use(express.json())
-app.use("/api/auth", authRoutes)
-app.get("/api", (req, res) => {
+app.use("/auth", authRoutes)
+app.get("", (req, res) => {
   res.send("API funcionando 🚀")
 })
 //Mostrar las tareas en la tabla
@@ -20,7 +20,7 @@ app.get('/tasks/:userId', (req, res)=>{
   })
 })
 // insertar los datos nuevos
-app.post('/api/create',(req,res) =>{
+app.post('/create',(req,res) =>{
     const { title, descripcion, userID } = req.body
     const sql = `
     INSERT INTO task (title, descripcion, estado, userID)
@@ -34,7 +34,7 @@ app.post('/api/create',(req,res) =>{
     })
 })
 //eliminar las tareas 
-app.delete('/api/task/:id',(req, res) =>{
+app.delete('/task/:id',(req, res) =>{
     const sql = "DELETE FROM task where id = ? "
     const id = req.params.id
     db.query(sql,[id],(err,data)=>{
@@ -43,7 +43,7 @@ app.delete('/api/task/:id',(req, res) =>{
     })
 })
 //cambiar el estado de la tarea
-app.post('/api/status/:id', (req, res) => {
+app.post('/status/:id', (req, res) => {
 
     const id = req.params.id
     const { estado } = req.body

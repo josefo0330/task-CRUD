@@ -2,6 +2,16 @@ version: "3.9"
 
 services:
 
+  maria_db_app:
+    image: mariadb:10.6
+    environment:
+      MYSQL_ROOT_PASSWORD: qwert
+      MYSQL_DATABASE: tareas
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - dokploy-network
+
   backend:
     build:
       context: ./backend
@@ -9,6 +19,14 @@ services:
       - "8081"
     networks:
       - dokploy-network
+    environment:
+      DB_HOST: maria_db_app
+      DB_USER: root
+      DB_PASSWORD: qwert
+      DB_NAME: tareas
+    depends_on:
+      - maria_db_app
+
   frontend:
     build:
       context: ./frontend/react-app
@@ -22,6 +40,9 @@ services:
       - traefik.enable=true
       - traefik.http.routers.app.rule=Host(`crud-task.softapp.ch`)
       - traefik.http.services.app.loadbalancer.server.port=80
+
+volumes:
+  mariadb_data:
 
 networks:
   dokploy-network:
