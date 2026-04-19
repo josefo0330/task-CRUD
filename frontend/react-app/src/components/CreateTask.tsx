@@ -21,7 +21,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     navigate('/dashboard')
   } catch (err) {
     console.error('Error creating task:', err)
-    alert('Error al crear la tarea. Revisa la consola para más detalles.')
+    alert('Error al crear la tarea. Revisa la consola para más detalles.'+title+", "+descripcion+", userID: "+user.id)
   }
 }
   return (
