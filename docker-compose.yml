@@ -1,3 +1,4 @@
+version: "3.9"
 
 services:
 
@@ -8,6 +9,17 @@ services:
       - "8081"
     networks:
       - dokploy-network
+    environment:
+      DB_HOST: ${DB_HOST:-bk88grkwbdul5pr44zeo-mysql.services.clever-cloud.com}
+      DB_USER: ${DB_USER:-upmy7d62u34ylxcq}
+      DB_PASSWORD: ${DB_PASSWORD:-ePcdXKC6brdncUB6pRKG}
+      DB_NAME: ${DB_NAME:-bk88grkwbdul5pr44zeo}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.backend.rule=Host(`crud-task.softapp.ch`) && PathPrefix(`/api`)
+      - traefik.http.routers.backend.middlewares=backend-stripprefix
+      - traefik.http.middlewares.backend-stripprefix.stripprefix.prefixes=/api
+      - traefik.http.services.backend.loadbalancer.server.port=8081
 
   frontend:
     build:

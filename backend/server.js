@@ -6,6 +6,13 @@ const authRoutes = require("./routes/authRoutes")
 //rutas
 app.use(cors())
 app.use(express.json())
+
+// Logger middleware
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path}`)
+  next()
+})
+
 app.use("/auth", authRoutes)
 app.get("/", (req, res) => {
   res.send("API funcionando 🚀")
@@ -63,6 +70,6 @@ app.post('/status/:id', (req, res) => {
     })
 })
 port=8081
-app.listen(port, ()=>{
+app.listen(port, "0.0.0.0", ()=>{
     console.log(`Servidor corriendo en el puerto ${port}`)
 }) 
