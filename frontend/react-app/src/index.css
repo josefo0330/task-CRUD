@@ -10,7 +10,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 body{
-  background-color: #213547;
+background: #5151cf;
+background: linear-gradient(90deg, rgba(81, 81, 207, 1) 0%, rgba(54, 54, 168, 1) 35%, rgba(46, 125, 140, 1) 100%);
 }
 table, th, td{
   border: 1px solid black;
