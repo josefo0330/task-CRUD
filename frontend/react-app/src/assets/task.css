@@ -56,10 +56,7 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-body{
-  background-color: rgb(2, 8, 64);
-  margin: 0;
-}
+
 .task {
   padding: 5rem 1rem 2rem;
   min-height: 100vh;
